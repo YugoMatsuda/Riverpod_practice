@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_practice/provider.dart';
+import 'package:riverpod_practice/view_model.dart';
 import 'data/count_data.dart';
 
 void main() {
@@ -31,6 +32,15 @@ class MyHomePage extends ConsumerStatefulWidget {
 }
 
 class _MyHomePageState extends ConsumerState<MyHomePage> {
+
+  final ViewModel _viewModel = ViewModel();
+
+  @override
+  void initState() {
+    super.initState();
+    _viewModel.setRef(ref);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +52,7 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(ref.watch(messageProvider)),
-            Text(ref.watch(countDataProvider.state).state.count.toString()),
+            Text(_viewModel.count),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
