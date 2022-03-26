@@ -73,8 +73,8 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Text(ref.watch(countDataProvider.state).state.countUp.toString()),
-                Text(ref.watch(countDataProvider.state).state.countDown.toString()),
+                Text(ref.watch(countDataProvider.select((value) => value.countUp.toString()))),
+                Text(ref.watch(countDataProvider.select((value) => value.countDown.toString()))),
               ],
             )
           ],
